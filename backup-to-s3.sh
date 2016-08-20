@@ -9,6 +9,7 @@
 # Parts copyright (c) 2016 Ivan.Nginx https://almostover.ru
 # This script is licensed under MIT license
 # ================================================================== #
+#source ./backup-config.sh
 source ~/backup-config.sh
 
 DATESTAMP=$(date +"-%m.%d.%Y")

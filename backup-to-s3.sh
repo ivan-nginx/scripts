@@ -10,6 +10,7 @@
 # This script is licensed under MIT license
 # ================================================================== #
 #source ./backup-config.sh
+#source /etc/backup-config.sh
 source ~/backup-config.sh
 
 DATESTAMP=$(date +"-%m.%d.%Y")

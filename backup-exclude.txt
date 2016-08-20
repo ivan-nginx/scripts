@@ -1,0 +1,3 @@
+/var/www/vhosts/site.com/directory
+/var/www/vhosts/site.com/file.gz
+/var/www/vhosts/site.com/backup/database*.sql*

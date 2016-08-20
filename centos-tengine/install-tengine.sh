@@ -198,12 +198,12 @@ make ;make install
 #wget http://mirror.diledns.com/linux/nginx/50x.html
 #wget http://mirror.diledns.com/linux/tengine/nginx
 cd /etc/rc.d/init.d
-wget https://raw.githubusercontent.com/ivan-nginx/scripts/centos-tengine/master/etc/rc.d/init.d/nginx
+wget https://raw.githubusercontent.com/ivan-nginx/scripts/master/centos-tengine/etc/rc.d/init.d/nginx
 chmod 755 /etc/rc.d/init.d/nginx
 cd /etc/sysconfig
-wget https://raw.githubusercontent.com/ivan-nginx/scripts/centos-tengine/master/etc/sysconfig/nginx
+wget https://raw.githubusercontent.com/ivan-nginx/scripts/master/centos-tengine/etc/sysconfig/nginx
 cd /etc/logrotate.d
-wget https://raw.githubusercontent.com/ivan-nginx/scripts/centos-tengine/master/etc/logrotate.d/nginx
+wget https://raw.githubusercontent.com/ivan-nginx/scripts/master/centos-tengine/etc/logrotate.d/nginx
 mkdir -p /var/cache/nginx/client_temp
 
 #sed -i 's/127.0.0.1/'$IP'/g' /usr/local/nginx/conf/proxy.conf

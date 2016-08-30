@@ -2,7 +2,7 @@
 # ================================================================== #
 # Shell script to backup databases and directories/files via s3cmd.
 # ================================================================== #
-# Version: 1.0.3
+# Version: 1.0.4
 # ================================================================== #
 # Parts copyright (c) 2012 woxxy https://github.com/woxxy/MySQL-backup-to-Amazon-S3
 # Parts copyright (c) 2015 betweenbrain https://github.com/betweenbrain/MySQL-backup-to-Amazon-S3
@@ -13,7 +13,7 @@
 #source /etc/backup-config.sh
 source ~/backup-config.sh
 
-DATESTAMP=$(date +"-%m.%d.%Y")
+DATESTAMP=$(date +"%Y.%m.%d-")
 DAY=$(date +"%d")
 DAYOFWEEK=$(date +"%A")
 PERIOD=${1-day}
@@ -28,6 +28,9 @@ if [ ${PERIOD} = "auto" ]; then
 	fi
 fi
 
+echo "========================="
+echo "$(date +'%Y-%b-%d [%R]')"
+echo "========================="
 echo "Selected period: $PERIOD."
 
 # we want at least two backups, two months, two weeks, and two days
@@ -51,33 +54,33 @@ for DB in $DATABASES; do
 	echo "Done backing up the database to a file."
 
 	echo "Starting compression..."
-	tar czf ${TMP_PATH}${DB}${DATESTAMP}.tar.gz ${TMP_PATH}${DB}.sql
+	tar czf ${TMP_PATH}${DATESTAMP}${DB}.tar.gz ${TMP_PATH}${DB}.sql
 	echo "Done compressing the backup file."
 
 	# upload all databases
 	echo "Uploading the new backup..."
-	s3cmd put -f ${TMP_PATH}${DB}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+	s3cmd put -f ${TMP_PATH}${DATESTAMP}${DB}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
 	echo "New backup uploaded."
 
 	echo "Removing the cache files..."
 	# remove databases dump
 	rm ${TMP_PATH}${DB}.sql
-	rm ${TMP_PATH}${DB}${DATESTAMP}.tar.gz
+	rm ${TMP_PATH}${DATESTAMP}${DB}.tar.gz
 	echo "Cache file removed..."
 
 done;
 
 	# backup defined files/directories with exclude
 	echo "Starting compression directories..."
-	tar pzcf ${TMP_PATH}${HOSTNAME}${DATESTAMP}.tar.gz ${DIRS} ${EXCLUDE}
+	tar pzcf ${TMP_PATH}${DATESTAMP}${HOSTNAME}.tar.gz ${DIRS} ${EXCLUDE}
 	echo "Done compressing directories."
 
 	echo "Uploading the new backup..."
-	s3cmd put -f ${TMP_PATH}${HOSTNAME}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+	s3cmd put -f ${TMP_PATH}${DATESTAMP}${HOSTNAME}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
 	echo "New backup uploaded."
 
 	echo "Removing the cache files..."
-	rm ${TMP_PATH}${HOSTNAME}${DATESTAMP}.tar.gz
+	rm ${TMP_PATH}${DATESTAMP}${HOSTNAME}.tar.gz
 	echo "Cache file removed..."
 
 echo "All done."

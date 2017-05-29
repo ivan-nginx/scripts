@@ -15,13 +15,7 @@ echo ">>>>>>>>>>>>>>>> Start to update nginx......>>>>>>>>>>>>>>>>>>>>>>>"
 service nginx stop
 
 # Start update
-wget https://sourceforge.net/projects/pcre/files/pcre/8.38/pcre-8.38.tar.gz
-tar zxf pcre-8.38.tar.gz
-cd pcre-8.38/
-./configure --enable-utf8 --enable-unicode-properties
-make ;make install
-
-cd ../
+cd /tmp
 wget https://github.com/alibaba/tengine/archive/master.zip
 unzip master.zip
 cd tengine-master

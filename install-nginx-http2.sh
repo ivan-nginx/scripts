@@ -18,7 +18,7 @@
 # Current version of nginx, openssl, and ngx_pagespeed you want to install
 NGINX_VERSION=1.12.0
 OPENSSL_VERSION=1.0.2l
-NPS_VERSION=1.11.33.2
+NPS_VERSION=1.11.33.4
 TEMP=/tmp
 
 ##############################################################################################

@@ -54,7 +54,7 @@ if [ $# -ne $EXPECTED_ARGS ]; then
     read -p "Enter username under whom program will start (press enter to default \"ivan-nginx\"): " USER_NAME
     USER_NAME=${USER_NAME:-ivan-nginx}
     echo
-    echo -e "${yellow}For command line usage:${norm} $0 ${blue}blogname ${norm}"
+    echo -e "${yellow}For command line usage:${norm} $0 ${blue}username ${norm}"
 else
     USER_NAME="$1"
 fi
